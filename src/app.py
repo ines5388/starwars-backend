@@ -233,7 +233,7 @@ def delete_planet(planets_id):
     else:
         return jsonify({"msg": "Planet not found"}), 404 
 
-@app.route("/favorite/planet/<int:planet_id>", methods=["POST"])
+@app.route("/favorite/planets/<int:planet_id>", methods=["POST"])
 @jwt_required()
 def add_favorite_planet(planet_id): 
     email = get_jwt_identity()
@@ -252,7 +252,7 @@ def add_favorite_planet(planet_id):
         else:  
             return jsonify({'msg': 'Planet has already exist in favorites'}), 400
 
-@app.route('/favorite/planet/<int:planet_id>', methods=['DELETE'])
+@app.route('/favorite/planets/<int:planet_id>', methods=['DELETE'])
 @jwt_required()
 def delete_favorite_planet(planet_id): 
     email = get_jwt_identity()
@@ -313,7 +313,7 @@ def delete_vehicle(vehicles_id):
     else:
         return jsonify({"msg": "Vehicle not found"}), 404 
 
-@app.route("/favorite/vehicle/<int:vehicle_id>", methods=["POST"])
+@app.route("/favorite/vehicles/<int:vehicle_id>", methods=["POST"])
 @jwt_required()
 def add_favorite_vehicle(vehicle_id): 
     email = get_jwt_identity()
@@ -332,7 +332,7 @@ def add_favorite_vehicle(vehicle_id):
         else:  
             return jsonify({'msg': 'Vechile has already exist in favorites'}), 400
 
-@app.route('/favorite/vehicle/<int:vehicle_id>', methods=['DELETE'])
+@app.route('/favorite/vehicles/<int:vehicle_id>', methods=['DELETE'])
 @jwt_required()
 def delete_favorite_vehicle(vehicle_id): 
     email = get_jwt_identity()
