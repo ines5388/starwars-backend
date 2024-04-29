@@ -8,10 +8,20 @@ def setup_admin(app):
     app.config['FLASK_ADMIN_SWATCH'] = 'cerulean'
     admin = Admin(app, name='4Geeks Admin', template_mode='bootstrap3')
 
+    class FavoriteCharacterView(ModelView):
+        column_list=('character_id', 'user_id')
+        form_columns=('character_id', 'user_id')
+    class FavoritePlanetView(ModelView):
+        column_list=('planet_id', 'user_id')
+        form_columns=('planet_id', 'user_id')
+    class FavoriteVehicleView(ModelView):
+        column_list=('vehicle_id', 'user_id')
+        form_columns=('vehicle_id', 'user_id')
+
     admin.add_view(ModelView(User, db.session))
     admin.add_view(ModelView(Character, db.session))
     admin.add_view(ModelView(Planet, db.session))
     admin.add_view(ModelView(Vehicle, db.session))
-    admin.add_view(ModelView(FavoriteCharacter, db.session))
-    admin.add_view(ModelView(FavoritePlanet, db.session))
-    admin.add_view(ModelView(FavoriteVehicle, db.session))
+    admin.add_view(FavoriteCharacterView(FavoriteCharacter, db.session))
+    admin.add_view(FavoritePlanetView(FavoritePlanet, db.session))
+    admin.add_view(FavoriteVehicleView(FavoriteVehicle, db.session))
